@@ -42,16 +42,13 @@ namespace ObserverTest1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (isProgress)
-            {
+            if (isProgress){
                 MessageBox.Show("Proccess in progress");
+                return;
             }
-            else
-            {
-                Thread thread = new Thread(new ThreadStart(ThreadProcSafe));
-                thread.Start();
-                isProgress = true;
-            }
+            Thread thread = new Thread(new ThreadStart(ThreadProcSafe));
+            thread.Start();
+            isProgress = true;
         }
 
         private void ThreadProcSafe()
@@ -96,17 +93,5 @@ namespace ObserverTest1
                 tb.Increment();
             }
         }
-
-        /*
-        private void ff(IProgress<string> progress)
-        {
-            for (int i = 0; i < 300; i++)
-            {
-                tb.Increment();
-                Task.Delay(500).Wait();
-            }
-        }
-        */
-
     }
 }
